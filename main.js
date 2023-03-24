@@ -3,17 +3,9 @@ const fromForm = document.querySelector("#todo-item");
 
 const todoList = document.querySelector(".todolist1");
 
-//const todos = []
+const todos = [];
 
-const todos = [
-  {
-    text: "item",
-    isDone: false,
-  },
-  {
-
-  }
-]
+const doneTodos = [];
 
 function drawToDoList() {
   
@@ -32,30 +24,37 @@ function drawToDoList() {
     }
 
 
-    const todoButton = document.createElement("button")
-    todoButton.textContent = "Delete";
-    todoButton.classList.add("todoDelete");
+    const todoDeleteButton = document.createElement("button");
+    todoDeleteButton.textContent = "Delete";
+    todoDeleteButton.classList.add("todoDeleteButton");
 
-    todoButton.dataset.index = i;
+    todoDeleteButton.dataset.index = i;
 
-    todoButton.addEventListener("click", deleteTodo);
+    todoDeleteButton.addEventListener("click", deleteTodo);
 
     const todoDoneButton = document.createElement("button");
-    todoDoneButton.textContent = "Done";
+    todoDoneButton.classList.add("todoDoneButton");
+    if (todos[i].isDone === true){
+      todoDoneButton.textContent = "UnDone";
+    }
+    else {
+      todoDoneButton.textContent = "Done";
+    }
 
     todoDoneButton.dataset.index = i;
 
-    todoDeleteButton.addEventListener("click", doneTodo);
-
-    listItem.appendChild(todoButton);
+    todoDoneButton.addEventListener("click", doneTodo);
 
     listItem.appendChild(todoDoneButton);
+
+    listItem.appendChild(todoDeleteButton);
 
     todoList.appendChild(listItem);
   }
 }
 
 function deleteTodo(event){
+  console.log("Delete button index", event.target.dataset.index);
 
   todoDeleteIndex = event.target.dataset.index;
 
@@ -67,11 +66,16 @@ function deleteTodo(event){
 
 
 function doneTodo(event) {
+
   console.log("mark done");
 
   todoDeleteIndex = event.target.dataset.index;
 
+  console.log("INDEX: ", todoDeleteIndex);
+
   todos[todoDeleteIndex].isDone = !todos[todoDeleteIndex].isDone;
+
+  console.log(todos);
 
   drawToDoList();
 }
@@ -127,7 +131,7 @@ form.addEventListener("submit", addTodo);
   //if (!appContainer) {
     //console.error("Error: Could not find app contianer");
     //return;
-  }
+  //}
 
   // Create an h1 and add it to our app
   //const h1 = document.createElement("h1");
@@ -136,7 +140,7 @@ form.addEventListener("submit", addTodo);
 
   // Init complete
   //console.log("App successfully initialised");
-}
+//}
 
 //
 // Inits & Event Listeners
