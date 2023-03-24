@@ -31,13 +31,51 @@ body {
   background-color: var(--body-background-colour);
 }
 
+.todoDeleteButton{
+
+  background-color: var(--colour-amaranth);
+  border: none;
+  
+}
+
+.todoDoneButton{
+  background-color: #59ce8f;
+  border: none;
+  
+}
+
+input.submit{
+  border: none;
+}
+
+.done{
+  background-color: grey;
+}
+
 main {
   min-height: 100vh;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
+
+section.listsec{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+ul.todolist1{
+  display: flex;
+  flex-direction: column;
+  justify-items: space-around;
+  
+  
+}
+
+
 
 /*
   Screen reader text utility class
